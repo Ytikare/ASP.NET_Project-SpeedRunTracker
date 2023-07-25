@@ -15,4 +15,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpeedRunTracker.Common\SpeedRunTracker.Common.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Data\SpeedRunTracker.Data.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Models\SpeedRunTracker.Models.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Services\SpeedRunTracker.Services.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Web.Infrastructure\SpeedRunTracker.Web.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

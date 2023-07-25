@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SpeedRunTracker.Data;
-using SpeedRunTracker.Web.Data;
 
 namespace SpeedRunTracker.Web
 {
