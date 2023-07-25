@@ -20,4 +20,8 @@
     <Folder Include="Entities\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpeedRunTracker.Common\SpeedRunTracker.Common.csproj" />
+  </ItemGroup>
+
 </Project>

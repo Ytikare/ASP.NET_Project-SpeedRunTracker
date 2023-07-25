@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpeedRunTracker.Data.Entities;
 using System.Reflection;
 
 namespace SpeedRunTracker.Data
 {
-    public class SpeedRunTrackerDbContext : IdentityDbContext
+    public class SpeedRunTrackerDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     {
         public SpeedRunTrackerDbContext(DbContextOptions<SpeedRunTrackerDbContext> options)
             : base(options)

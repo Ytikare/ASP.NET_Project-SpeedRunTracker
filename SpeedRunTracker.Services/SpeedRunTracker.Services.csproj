@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpeedRunTracker.Common\SpeedRunTracker.Common.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Data\SpeedRunTracker.Data.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Models\SpeedRunTracker.Models.csproj" />
+  </ItemGroup>
+
 </Project>
