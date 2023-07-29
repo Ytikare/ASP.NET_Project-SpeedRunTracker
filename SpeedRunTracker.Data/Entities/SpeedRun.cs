@@ -52,5 +52,7 @@ namespace SpeedRunTracker.Data.Entities
 
         [Required]
         public bool IsActive { get; set; }
+
+        public string? VerifierName { get; set; }
     }
 }

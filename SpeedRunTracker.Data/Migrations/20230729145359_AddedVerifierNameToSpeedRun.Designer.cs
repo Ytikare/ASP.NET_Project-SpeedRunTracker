@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpeedRunTracker.Data;
 
@@ -11,9 +12,10 @@ using SpeedRunTracker.Data;
 namespace SpeedRunTracker.Data.Migrations
 {
     [DbContext(typeof(SpeedRunTrackerDbContext))]
-    partial class SpeedRunTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230729145359_AddedVerifierNameToSpeedRun")]
+    partial class AddedVerifierNameToSpeedRun
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

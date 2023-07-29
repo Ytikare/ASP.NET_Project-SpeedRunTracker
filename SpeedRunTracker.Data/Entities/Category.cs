@@ -8,6 +8,7 @@ namespace SpeedRunTracker.Data.Entities
         public Category()
         {
             Games = new HashSet<GameCategories>();
+            SpeedRuns = new HashSet<SpeedRun>();
         }
 
         [Key]
@@ -18,5 +19,7 @@ namespace SpeedRunTracker.Data.Entities
         public string Name { get; set; } = null!;
 
         public ICollection<GameCategories> Games { get; set; }
+
+        public ICollection<SpeedRun> SpeedRuns { get; set; }
     }
 }
