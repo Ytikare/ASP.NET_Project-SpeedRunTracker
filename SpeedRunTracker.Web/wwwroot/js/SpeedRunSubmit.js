@@ -67,7 +67,7 @@
 
                                     gameCategotySelect.appendChild(optEl);
                                 }
-                            })).catch((err) => {
+                            )}).catch((err) => {
                                 console.log(err.message);
                             });
                     })

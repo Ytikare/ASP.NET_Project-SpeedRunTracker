@@ -11,6 +11,7 @@ namespace SpeedRunTracker.Data.Entities
             Id = Guid.NewGuid();
             SubmitionDate = DateTime.UtcNow;
             IsVerified = false;
+            IsActive = true;
         }
 
         [Key]

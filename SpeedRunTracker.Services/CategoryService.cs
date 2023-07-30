@@ -27,5 +27,10 @@ namespace SpeedRunTracker.Services
                 })
                 .ToListAsync();
         }
+
+        public async Task<bool> IsCategoryIdValid(int categoryId)
+        {
+            return await dbContext.Categories.AnyAsync(c => c.Id == categoryId);
+        }
     }
 }

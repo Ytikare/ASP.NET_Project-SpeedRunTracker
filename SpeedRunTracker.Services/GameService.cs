@@ -27,5 +27,10 @@ namespace SpeedRunTracker.Services
                 })
                 .ToListAsync();
         }
+
+        public async Task<bool> IsGameIdValidAsync(int gameId)
+        {
+            return await dbContext.Games.AnyAsync(g => g.Id == gameId);
+        }
     }
 }
