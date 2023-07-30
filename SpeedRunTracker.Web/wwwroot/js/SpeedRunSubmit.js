@@ -23,15 +23,15 @@
                 if (!$.trim(data)) {
                     return;
                 }
-                let initialOptEl = document.createElement('option');
-                initialOptEl.textContent = '--Choose game title--';
-                initialOptEl.value = 0;
+                let initialGameOptEl = document.createElement('option');
+                initialGameOptEl.textContent = '--Choose game title--';
+                initialGameOptEl.value = 0;
 
-                initialOptEl.addEventListener('click', () => {
+                initialGameOptEl.addEventListener('click', () => {
                     gameCategotySelect.innerHTML = '';
                 })
 
-                gameTitleSelect.appendChild(initialOptEl);
+                gameTitleSelect.appendChild(initialGameOptEl);
 
                 data.forEach(el => {
                     let optionElement = document.createElement('option');
@@ -42,7 +42,7 @@
 
                     optionElement.addEventListener("click", (ev) => {
                         ev.stopPropagation();
-                        gameInput.textContent = 
+                        gameInput.value = ev.target.textContent;
 
                         const gameId = ev.target.value;
 
@@ -52,14 +52,21 @@
                                     return response.json();
                                 }
                                 throw Error(`${response.status}`);
-                            }).then(data => data.forEach(el => {
-                                let optEl = document.createElement('option');
+                            }).then(data => {
 
-                                optEl.textContent = el['category'];
+                                let initialCategoryOptEle = document.createElement('option')
+                                initialCategoryOptEle.textContent = '--Choose category--';
+                                initialCategoryOptEle.value = 0;
 
-                                optEl.value = el['id'];
+                                data.forEach(el => {
+                                    let optEl = document.createElement('option');
 
-                                gameCategotySelect.appendChild(optEl);
+                                    optEl.textContent = el['category'];
+
+                                    optEl.value = el['id'];
+
+                                    gameCategotySelect.appendChild(optEl);
+                                }
                             })).catch((err) => {
                                 console.log(err.message);
                             });
