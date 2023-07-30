@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SpeedRunTracker.Models.Web;
+using SpeedRunTracker.Models.Web.ViewModels;
 using System.Diagnostics;
 
 namespace SpeedRunTracker.Web.Controllers

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a16c219d-7287-497e-a531-e3cb1344bf19</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SpeedRunTracker.Common\SpeedRunTracker.Common.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Data\SpeedRunTracker.Data.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Models\SpeedRunTracker.Models.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Services\SpeedRunTracker.Services.csproj" />
+    <ProjectReference Include="..\SpeedRunTracker.Web.Infrastructure\SpeedRunTracker.Web.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

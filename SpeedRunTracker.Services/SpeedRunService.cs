@@ -1,5 +1,4 @@
-﻿using SpeedRunTracker.Data;
-using SpeedRunTracker.Services.Interfaces;
+﻿using SpeedRunTracker.Services.Interfaces;
 
 namespace SpeedRunTracker.Services
 {

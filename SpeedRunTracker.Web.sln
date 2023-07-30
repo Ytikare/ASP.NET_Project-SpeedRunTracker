@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Web", "SpeedRunTracker.Web\SpeedRunTracker.Web.csproj", "{94FA3600-AE0E-4127-8D01-D3DED5DC870E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Web", "SpeedRunTracker.Web\SpeedRunTracker.Web.csproj", "{94FA3600-AE0E-4127-8D01-D3DED5DC870E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Data", "SpeedRunTracker.Data\SpeedRunTracker.Data.csproj", "{DBB1BB8C-3724-4D23-8E54-49284664AF79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Data", "SpeedRunTracker.Data\SpeedRunTracker.Data.csproj", "{DBB1BB8C-3724-4D23-8E54-49284664AF79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Common", "SpeedRunTracker.Common\SpeedRunTracker.Common.csproj", "{3100925C-514C-49AA-9916-41FA0095A396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Common", "SpeedRunTracker.Common\SpeedRunTracker.Common.csproj", "{3100925C-514C-49AA-9916-41FA0095A396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Models", "SpeedRunTracker.Models\SpeedRunTracker.Models.csproj", "{4FC7B01C-A944-4C38-B05C-97D05FC20152}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Models", "SpeedRunTracker.Models\SpeedRunTracker.Models.csproj", "{4FC7B01C-A944-4C38-B05C-97D05FC20152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Services", "SpeedRunTracker.Services\SpeedRunTracker.Services.csproj", "{0C84EA47-8F33-4399-B143-CCCBA2FD79DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Services", "SpeedRunTracker.Services\SpeedRunTracker.Services.csproj", "{0C84EA47-8F33-4399-B143-CCCBA2FD79DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Web.Infrastructure", "SpeedRunTracker.Web.Infrastructure\SpeedRunTracker.Web.Infrastructure.csproj", "{27E18980-4D67-4517-97DB-7B86B4D421C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Web.Infrastructure", "SpeedRunTracker.Web.Infrastructure\SpeedRunTracker.Web.Infrastructure.csproj", "{27E18980-4D67-4517-97DB-7B86B4D421C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Web.Api", "SpeedRunTracker.Web.Api\SpeedRunTracker.Web.Api.csproj", "{E0C5F813-B4E6-46A3-BA44-D18603775BD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{27E18980-4D67-4517-97DB-7B86B4D421C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27E18980-4D67-4517-97DB-7B86B4D421C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27E18980-4D67-4517-97DB-7B86B4D421C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

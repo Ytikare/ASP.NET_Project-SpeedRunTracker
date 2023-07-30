@@ -1,4 +1,4 @@
-namespace SpeedRunTracker.Models.Web
+namespace SpeedRunTracker.Models.Web.ViewModels
 {
     public class ErrorViewModel
     {
