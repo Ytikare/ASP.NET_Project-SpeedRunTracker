@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpeedRunTracker.Models.Web.FormModels;
+using SpeedRunTracker.Models.Web.ViewModels;
 using SpeedRunTracker.Services.Interfaces;
 using SpeedRunTracker.Web.Infrastructure.Extensions;
 
@@ -64,6 +65,20 @@ namespace SpeedRunTracker.Web.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string speedRunId)
+        {
+            if (await speedRunService.CheckSpeedRunExitsAsync(speedRunId))
+            {
+                SpeedRunDetailsViewModel model = await speedRunService.GetSpeedRunDetailsAsync(speedRunId);
+
+                return View(model);
+            }
+
+            return NotFound();
+
         }
     }
 }
