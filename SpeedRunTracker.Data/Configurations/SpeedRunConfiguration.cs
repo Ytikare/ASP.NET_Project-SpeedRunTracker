@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpeedRunTracker.Data.Entities;
-using System.Xml.Linq;
 
 namespace SpeedRunTracker.Data.Configurations
 {
@@ -24,7 +23,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 1,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-1).AddMonths(-3).AddDays(-2),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-1).AddMonths(-3).AddDays(-2),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(0, 1,46, 58, 75),
             };
@@ -39,7 +38,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 1,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddMonths(-8).AddDays(-23),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddMonths(-8).AddDays(-23),
                 SpeedRunerId = Guid.Parse("DE5697F9-1610-4C65-986D-998A20D207EC"),
                 SpeedRunTime = new TimeSpan(0, 56, 10),
             };
@@ -54,7 +53,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 1,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddMonths(-6).AddDays(-13),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddMonths(-6).AddDays(-13),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(0, 57, 21),
             };
@@ -69,7 +68,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 1,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-1).AddMonths(-1),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-1).AddMonths(-1),
                 SpeedRunerId = Guid.Parse("6A490127-80C3-49C1-B851-A6A24BE09EC7"),
                 SpeedRunTime = new TimeSpan(1, 2, 10),
             };
@@ -84,7 +83,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 1,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-1).AddMonths(-9).AddDays(-17),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-1).AddMonths(-9).AddDays(-17),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(1, 2, 23),
             };
@@ -99,7 +98,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 1,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddMonths(-10).AddDays(-28),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddMonths(-10).AddDays(-28),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(1, 5, 0),
             };
@@ -114,7 +113,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 2,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-3).AddMonths(-2).AddDays(-12),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-3).AddMonths(-2).AddDays(-12),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(0, 12, 40),
             };
@@ -129,7 +128,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 2,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-2).AddMonths(-1).AddDays(-15),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-2).AddMonths(-1).AddDays(-15),
                 SpeedRunerId = Guid.Parse("6A490127-80C3-49C1-B851-A6A24BE09EC7"),
                 SpeedRunTime = new TimeSpan(0, 16, 37),
             };
@@ -144,7 +143,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 3,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddMonths(-11).AddDays(-24),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddMonths(-11).AddDays(-24),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(1, 28, 14),
             };
@@ -159,7 +158,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 3,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-1).AddMonths(-5).AddDays(-19),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-1).AddMonths(-5).AddDays(-19),
                 SpeedRunerId = Guid.Parse("6A490127-80C3-49C1-B851-A6A24BE09EC7"),
                 SpeedRunTime = new TimeSpan(1, 20, 42),
             };
@@ -174,7 +173,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 4,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddMonths(-1).AddDays(-4),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddMonths(-1).AddDays(-4),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(16, 9, 50)
             };
@@ -189,7 +188,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 5,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddDays(-24),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddDays(-24),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(0, 0, 14, 11, 930),
             };
@@ -204,7 +203,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 5,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddYears(-3).AddDays(-23),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddYears(-3).AddDays(-23),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(0, 46, 59),
             };
@@ -219,7 +218,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 6,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddMonths(-3).AddDays(-2),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddMonths(-3).AddDays(-2),
                 SpeedRunerId = Guid.Parse("D5001448-AC7A-4666-824D-F6A48228B3B0"),
                 SpeedRunTime = new TimeSpan(1, 14, 19),
             };
@@ -234,7 +233,7 @@ namespace SpeedRunTracker.Data.Configurations
                 GameId = 6,
                 IsActive = true,
                 IsVerified = false,
-                SubmitionDate = DateTime.UtcNow.AddDays(-28),
+                SubmitionDate = DateTime.Parse("2023-08-05T07:50:40Z").AddDays(-28),
                 SpeedRunerId = Guid.Parse("6A490127-80C3-49C1-B851-A6A24BE09EC7"),
                 SpeedRunTime = new TimeSpan(1, 16, 21),
             };
