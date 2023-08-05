@@ -5,6 +5,12 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+        if (User.IsInRole(ApplicationRoles.Moderaton.ToString()) || User.IsInRole(ApplicationRoles.Admin.ToString()))
+        {
+            <li class="nav-item">
+                <a  class="nav-link text-white" asp-controller="Moderation" asp-action="Dashboard" title="Manage">Mod dashboard</a>
+            </li>
+        }
     <li class="nav-item">
         <a  class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>

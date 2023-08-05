@@ -3,69 +3,28 @@
 @{
     ViewBag.Title = "SpeedRun Details";
 }
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center mt-2">@ViewBag.Title</h2>
 <hr />
 <div class="container" style="display:inline">
-    <div class="row">
-        <div class="col-4">
-            <img class="card-img-top" style="width: 20rem;" src="@Model.GameImage" alt="House Image">
-        </div>
-        <div class="card col-5 border-0 text-white">
-            <p style="font-size:25px;"><u>@Model.GameTitle</u></p>
-            <p>Category: <b>@Model.Category</b></p>
-            <p>Submition Date: <b>@Model.SubmitionDate.ToString("dd/MM/yyyy")</b></p>
-            <p>Run time: <b>@Model.SpeedRunTime.ToString("g")</b></p>
-            <p>Run by: <b>@Model.SpeedRuner</b></p>
-           
-            <p></p>
-            @if (Model.IsVerified && Model.IsActive)
-            {
-                <div class="card text-white bg-primary" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">Verifier</h5>
-                    <p class="card-text">Username: @Model.VerifierName</p>
-                    <p class="card-text">Verification date: @Model.VerificationDate</p>
-                    </div>
-                </div>    
-            }
-            else if (Model.IsVerified == false && Model.IsActive)
-            {
-                <div class="card text-white bg-primary" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Pending verification</h5>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="card text-white bg-primary" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">SpeedRun disqualified</h5>
-                     </div>
-                </div>
-            }
+    
 
-            
-        </div>
+    <partial name="_SpeedRunDetailsPartial" model="@Model"/>
 
-        <div class="col-2">
-            <a class="btn btn-info" href="@Model.SpeedRunVideoUrl">SpeedRun Video</a>
-        </div>
-
-            @if (User.IsInRole(ApplicationRoles.Moderaton.ToString()) || User.IsInRole(ApplicationRoles.Admin.ToString()))
+    @if (User.IsInRole(ApplicationRoles.Moderaton.ToString()) || User.IsInRole(ApplicationRoles.Admin.ToString()))
+    {
+            <div class="d-flex justify-content-center gap-3">
+            @if (Model.IsVerified == false && Model.IsActive)
             {
-                <div class="form-inline">
-                @if (Model.IsVerified == false && Model.IsActive)
-                {
-                    //<a class="ml-2 btn btn-info" asp-controller="SpeedRuns" asp-action="Verify" asp-route-id="@Model.Id">Verify</a>
-                    //<a class="ml-2 btn btn-danger" asp-controller="SpeedRuns" asp-action="Disqualify" asp-route-id="@Model.Id">Disqualify</a>
-                }
-                else if (Model.IsVerified && Model.IsActive)
-                {
-                    //<a class="ml-2 btn btn-danger" asp-controller="SpeedRuns" asp-action="Disqualify" asp-route-id="@Model.Id">Disqualify</a>
-                }
-                </div>
+                <a id="infoBtn" class="ml-2 btn btn-info" asp-controller="Moderation" asp-action="Verify" asp-route-speedRunId="@Model.Id.ToString()">Verify</a>
+                <a class="ml-2 btn btn-danger" asp-controller="Moderation" asp-action="Disqualify" asp-route-speedRunId="@Model.Id.ToString()">Disqualify</a>
             }
-    </div>
+            else if (Model.IsVerified && Model.IsActive)
+            {
+                <a class="ml-2 btn btn-danger" asp-controller="Moderation" asp-action="Disqualify" asp-route-speedRunId="@Model.Id.ToString()">Disqualify</a>
+            }
+            </div>
+    }
 </div>
-
+@section Scripts{
+        <script src="~/js/SpeedRunDetails.js"></script>
+}

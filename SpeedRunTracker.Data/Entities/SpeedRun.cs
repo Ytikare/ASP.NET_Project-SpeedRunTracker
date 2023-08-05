@@ -56,6 +56,7 @@ namespace SpeedRunTracker.Data.Entities
 
         public string? VerifierName { get; set; }
 
+        [MaxLength(MaxDisqualificationReasonLenght)]
         public string? DisqualificationReason { get; set; }
     }
 }

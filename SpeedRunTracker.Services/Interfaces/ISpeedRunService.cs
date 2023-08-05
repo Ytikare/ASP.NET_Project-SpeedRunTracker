@@ -13,5 +13,9 @@ namespace SpeedRunTracker.Services.Interfaces
         public Task<bool> CheckSpeedRunExitsAsync(string speedRunId);
 
         public Task<SpeedRunDetailsViewModel> GetSpeedRunDetailsAsync(string speedRunId);
+
+        public Task VerifySpeedRunAsync(string speedRunId, string verifierUsername);
+
+        public Task DisqualifySpeedRunAsync(SpeedRunDisqualifyModel model, string speedRunId);
     }
 }

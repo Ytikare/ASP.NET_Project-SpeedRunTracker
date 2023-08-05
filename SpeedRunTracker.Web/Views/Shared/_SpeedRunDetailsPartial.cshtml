@@ -1,0 +1,46 @@
+﻿@model SpeedRunDetailsViewModel
+
+@{
+}
+ <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;" src="@Model.GameImage" alt="House Image">
+        </div>
+        <div class="card col-5 border-0 text-white">
+            <p style="font-size:25px;"><u>@Model.GameTitle</u></p>
+            <p>Category: <b>@Model.Category</b></p>
+            <p>Submition Date: <b>@Model.SubmitionDate.ToString("dd/MM/yyyy")</b></p>
+            <p>Run time: <b>@Model.SpeedRunTime.ToString("g")</b></p>
+            <p>Run by: <b>@Model.SpeedRuner</b></p>
+
+            <p></p>
+            <div class="card text-center text-white bg-primary" style="max-width: 20rem;">
+        @if (Model.IsVerified && Model.IsActive)
+        {
+                    <div class="card-header">
+                        <h5 class="card-title">Verified</h5>
+                        </div>
+                <div class="card-body">
+                    <p class="card-text">Verified by: @Model.VerifierName</p>
+                <p class="card-text">Verification date: @Model.VerificationDate</p>
+                </div>
+        }
+        else if (Model.IsVerified == false && Model.IsActive)
+        {
+                 <div class="card-body">
+                            <h5 class="card-title">Pending verification</h5>
+                 </div>
+        }
+        else
+        {
+                 <div class="card-body">
+                    <h5 class="card-title">SpeedRun disqualified</h5>
+                 </div>
+        }
+            </div>
+        </div>
+
+        <div class="col-2">
+            <a class="btn btn-info" href="@Model.SpeedRunVideoUrl">SpeedRun Video</a>
+        </div>
+    </div>

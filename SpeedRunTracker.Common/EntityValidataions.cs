@@ -13,6 +13,9 @@
         public static class SpeedRunValidations
         {
             public const int MaxSpeedRunVideoUrlLenght = 200;
+
+            public const int MaxDisqualificationReasonLenght = 2000;
+            public const int MinDisqualificationReasonLenght = 10;
         }
 
         public static class CategoryValidations

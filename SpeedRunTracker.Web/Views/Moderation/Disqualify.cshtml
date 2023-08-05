@@ -1,0 +1,24 @@
+﻿@model SpeedRunDisqualifyModel
+
+@{
+    ViewData["Title"] = "Disqualify SpeedRun";
+}
+
+<h5 class="text-center mt-2">@ViewData["Title"]</h5>
+
+<partial name="_SpeedRunDetailsPartial" model="@Model.SpeedRunDetails"/>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.DisqulificationMessage"></label>
+                <textarea asp-for="@Model.DisqulificationMessage" class="form-control" placeholder="Enter disqualification reason here"><</textarea>
+                <span asp-validation-for="@Model.DisqulificationMessage" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-warning mt-3" type="submit" value="Disqualify" />
+            </div>
+        </form>
+    </div>
+</div>

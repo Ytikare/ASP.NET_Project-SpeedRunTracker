@@ -45,6 +45,19 @@ namespace SpeedRunTracker.Services
             return await dbContext.SpeedRuns.AnyAsync(s => s.Id.ToString().ToUpper() == speedRunId);
         }
 
+        public async Task DisqualifySpeedRunAsync(SpeedRunDisqualifyModel model, string speedRunId)
+        {
+            SpeedRun s = await dbContext.SpeedRuns.Where(s => s.Id.ToString() == speedRunId).FirstAsync();
+
+            s.IsVerified = false;
+            s.IsActive = false;
+            s.VerificationDate = null;
+            s.VerifierName = null;
+            s.DisqualificationReason = model.DisqulificationMessage;
+
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<SpeedRunModerationViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync()
         {
             ICollection<SpeedRunModerationViewModel> data = await dbContext.SpeedRuns
@@ -69,6 +82,8 @@ namespace SpeedRunTracker.Services
         public async Task<SpeedRunDetailsViewModel> GetSpeedRunDetailsAsync(string speedRunId)
         {
             SpeedRunDetailsViewModel model = await dbContext.SpeedRuns
+                .Include(s => s.SpeedRuner)
+                .Include(s => s.Game)
                 .Where(s => s.Id.ToString() == speedRunId)
                 .Select(s => new SpeedRunDetailsViewModel()
                 {
@@ -88,6 +103,17 @@ namespace SpeedRunTracker.Services
                 .FirstAsync();
 
             return model;
+        }
+
+        public async Task VerifySpeedRunAsync(string speedRunId, string verifierUsername)
+        {
+            SpeedRun sp = await dbContext.SpeedRuns.FirstAsync(s => s.Id.ToString() == speedRunId);
+
+            sp.IsVerified = true;
+            sp.VerificationDate = DateTime.UtcNow;
+            sp.VerifierName = verifierUsername;
+
+            dbContext.SaveChanges();
         }
     }
 }
