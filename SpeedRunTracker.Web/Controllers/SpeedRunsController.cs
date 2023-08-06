@@ -69,6 +69,7 @@ namespace SpeedRunTracker.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(string speedRunId)
         {
             if (await speedRunService.CheckSpeedRunExitsAsync(speedRunId))

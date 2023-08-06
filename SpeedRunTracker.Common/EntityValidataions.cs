@@ -37,8 +37,10 @@
         public static class SupportTicketValidations
         {
             public const int MaxTitleLenght = 100;
-            
+            public const int MinTitleLenght = 10;
+
             public const int MaxContentLenght = 2000;
+            public const int MinContentLenght = 10;
         }
     }
 }
