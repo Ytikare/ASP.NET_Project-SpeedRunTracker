@@ -25,6 +25,8 @@ namespace SpeedRunTracker.Data
 
         public DbSet<GameGenres> GameGenres { get; set; } = null!;
 
+        public DbSet<SupportTicket> SupportTickets { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             Assembly configAssembly = Assembly.GetAssembly(typeof(SpeedRunTrackerDbContext)) ?? Assembly.GetExecutingAssembly();

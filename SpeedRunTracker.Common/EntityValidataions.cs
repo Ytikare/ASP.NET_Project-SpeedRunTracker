@@ -33,5 +33,12 @@
             public const int MinUsernameLenght = 3;
             public const int MaxUsernameLenght = 40;
         }
+
+        public static class SupportTicketValidations
+        {
+            public const int MaxTitleLenght = 100;
+            
+            public const int MaxContentLenght = 2000;
+        }
     }
 }
