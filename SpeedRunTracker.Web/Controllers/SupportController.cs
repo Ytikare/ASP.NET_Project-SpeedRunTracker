@@ -45,5 +45,23 @@ namespace SpeedRunTracker.Web.Controllers
 
             }
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Moderator, Admin")]
+        public async Task<IActionResult> Complete(string ticketId)
+        {
+            await ticketService.CompleteTicketAsync(ticketId);
+
+            return RedirectToAction("Dashboard", "Moderation");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Moderator, Admin")]
+        public async Task<IActionResult> Decline(string ticketId)
+        {
+            await ticketService.DeclineTicketAsync(ticketId);
+
+            return RedirectToAction("Dashboard", "Moderation");
+        }
     }
 }

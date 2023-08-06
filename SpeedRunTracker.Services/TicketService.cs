@@ -15,6 +15,29 @@ namespace SpeedRunTracker.Services
             this.dbContext = dbContext;
         }
 
+        public async Task CompleteTicketAsync(string ticketId)
+        {
+            SupportTicket t = await dbContext.SupportTickets
+                .Where(t => t.Id.ToString().Equals(ticketId))
+                .FirstAsync();
+
+            t.IsActive = false;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeclineTicketAsync(string ticketId)
+        {
+            SupportTicket t = await dbContext.SupportTickets
+                .Where(t => t.Id.ToString().Equals(ticketId))
+                .FirstAsync();
+
+            t.IsActive = false;
+            t.IsDeclined = false;
+
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task GenerateTicketAsync(TicketFormModel model,string userId)
         {
             SupportTicket supportTicket = new SupportTicket()
@@ -34,6 +57,7 @@ namespace SpeedRunTracker.Services
         public async Task<IEnumerable<TicketDashboardViewModel>> GetOldestFiveActiveTicketsAsync()
         {
             return await dbContext.SupportTickets
+                .Where(t => t.IsActive == true)
                 .OrderByDescending(t => t.IssueDate)
                 .Take(5)
                 .Select(t => new TicketDashboardViewModel 

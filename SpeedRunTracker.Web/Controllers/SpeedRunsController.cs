@@ -4,7 +4,6 @@ using SpeedRunTracker.Models.Web.FormModels;
 using SpeedRunTracker.Models.Web.ViewModels;
 using SpeedRunTracker.Services.Interfaces;
 using SpeedRunTracker.Web.Infrastructure.Extensions;
-using SpeedRunTracker.Common;
 
 namespace SpeedRunTracker.Web.Controllers
 {
@@ -59,9 +58,9 @@ namespace SpeedRunTracker.Web.Controllers
             {
                 await speedRunService.AddSpeedRunAsync(model, User.GetId()!);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, e.Message);
+                ModelState.AddModelError(string.Empty, "Unpexpected error occured. Please try again later or contact support.");
                 return View(model);
             }
 
@@ -81,6 +80,60 @@ namespace SpeedRunTracker.Web.Controllers
 
             return NotFound();
 
+        }
+
+        
+        [HttpGet]
+        [Authorize(Roles = "Moderator, Admin")]
+        public async Task<IActionResult> Verify(string speedRunId)
+        {
+            if (await speedRunService.CheckSpeedRunExitsAsync(speedRunId) == false)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                await speedRunService.VerifySpeedRunAsync(speedRunId, User.Identity!.Name!);
+                return RedirectToAction("Details", "SpeedRuns", new { speedRunId });
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Moderator, Admin")]
+        public async Task<IActionResult> Disqualify(string speedRunId)
+        {
+            SpeedRunDisqualifyModel viewModel = new SpeedRunDisqualifyModel()
+            {
+                SpeedRunDetails = await speedRunService.GetSpeedRunDetailsAsync(speedRunId),
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Moderator, Admin")]
+        public async Task<IActionResult> Disqualify(SpeedRunDisqualifyModel model, string speedRunId)
+        {
+            if (ModelState.IsValid == false)
+            {
+                model.SpeedRunDetails = await speedRunService.GetSpeedRunDetailsAsync(speedRunId);
+                return View(model);
+            }
+
+            try
+            {
+                await speedRunService.DisqualifySpeedRunAsync(model, speedRunId);
+                return RedirectToAction("Details", "SpeedRuns", new { speedRunId });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Something went wrong. Please try again later.");
+            }
         }
     }
 }

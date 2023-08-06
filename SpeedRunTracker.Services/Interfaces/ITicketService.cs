@@ -8,5 +8,9 @@ namespace SpeedRunTracker.Services.Interfaces
         public Task GenerateTicketAsync(TicketFormModel model, string userId);
 
         public Task<IEnumerable<TicketDashboardViewModel>> GetOldestFiveActiveTicketsAsync();
+
+        public Task CompleteTicketAsync(string ticketId);
+
+        public Task DeclineTicketAsync(string ticketId);
     }
 }
