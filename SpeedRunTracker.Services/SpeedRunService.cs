@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeedRunTracker.Data;
 using SpeedRunTracker.Data.Entities;
-using SpeedRunTracker.Models.Web.ApiModels;
 using SpeedRunTracker.Models.Web.FormModels;
 using SpeedRunTracker.Models.Web.ViewModels;
 using SpeedRunTracker.Services.Interfaces;
@@ -58,13 +57,13 @@ namespace SpeedRunTracker.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<SpeedRunModerationViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync()
+        public async Task<IEnumerable<SpeedRunDashboardDetailsViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync()
         {
-            ICollection<SpeedRunModerationViewModel> data = await dbContext.SpeedRuns
+            ICollection<SpeedRunDashboardDetailsViewModel> data = await dbContext.SpeedRuns
                 .Where(s => s.IsActive == true && s.IsVerified == false)
                 .OrderByDescending(s => s.SubmitionDate)
                 .Take(5)
-                .Select(s => new SpeedRunModerationViewModel()
+                .Select(s => new SpeedRunDashboardDetailsViewModel()
                 {
                     Id = s.Id.ToString(),
                     Category = s.Category.Name,

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpeedRunTracker.Models.Web.FormModels;
+using SpeedRunTracker.Models.Web.ViewModels;
 using SpeedRunTracker.Services.Interfaces;
 
 namespace SpeedRunTracker.Web.Controllers
@@ -10,16 +11,28 @@ namespace SpeedRunTracker.Web.Controllers
     {
         private readonly IUserService userService;
         private readonly ISpeedRunService speedRunService;
+        private readonly ITicketService ticketService;
 
-        public ModerationController(IUserService userService, ISpeedRunService speedRunService)
+        public ModerationController(IUserService userService, 
+            ISpeedRunService speedRunService, 
+            ITicketService ticketService)
         {
             this.userService = userService;
             this.speedRunService = speedRunService;
+            this.ticketService = ticketService;
         }
 
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
-            return View();
+            DashboardViewModel model = new DashboardViewModel()
+            {
+                SpeedRuns = await speedRunService.GetOldestFiveUnverifiedSpeedRunsAsync(),
+                SupportTickets = await ticketService.GetOldestFiveActiveTicketsAsync()
+            };
+
+
+
+            return View(model);
         }
 
         [HttpGet]

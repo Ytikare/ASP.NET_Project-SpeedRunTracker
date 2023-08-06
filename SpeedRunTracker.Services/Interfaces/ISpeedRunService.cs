@@ -1,5 +1,4 @@
-﻿using SpeedRunTracker.Models.Web.ApiModels;
-using SpeedRunTracker.Models.Web.FormModels;
+﻿using SpeedRunTracker.Models.Web.FormModels;
 using SpeedRunTracker.Models.Web.ViewModels;
 
 namespace SpeedRunTracker.Services.Interfaces
@@ -8,7 +7,7 @@ namespace SpeedRunTracker.Services.Interfaces
     {
         public Task AddSpeedRunAsync(SpeedRunFormModel model, string speedRunnerId);
 
-        public Task<IEnumerable<SpeedRunModerationViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync();
+        public Task<IEnumerable<SpeedRunDashboardDetailsViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync();
 
         public Task<bool> CheckSpeedRunExitsAsync(string speedRunId);
 

@@ -1,6 +1,8 @@
-﻿using SpeedRunTracker.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SpeedRunTracker.Data;
 using SpeedRunTracker.Data.Entities;
 using SpeedRunTracker.Models.Web.FormModels;
+using SpeedRunTracker.Models.Web.ViewModels;
 using SpeedRunTracker.Services.Interfaces;
 
 namespace SpeedRunTracker.Services
@@ -27,6 +29,21 @@ namespace SpeedRunTracker.Services
 
             await dbContext.SupportTickets.AddAsync(supportTicket);
             await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<TicketDashboardViewModel>> GetOldestFiveActiveTicketsAsync()
+        {
+            return await dbContext.SupportTickets
+                .OrderByDescending(t => t.IssueDate)
+                .Take(5)
+                .Select(t => new TicketDashboardViewModel 
+                {
+                    Title = t.Title,
+                    Content = t.Content,
+                    Id = t.Id.ToString(),
+                    Submitter = t.Issuer.UserName,
+                })
+                .ToListAsync();
         }
     }
 }

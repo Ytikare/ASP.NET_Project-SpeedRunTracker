@@ -1,17 +1,60 @@
-﻿    <div class="row mt-5 gap-3">
-            <div class="col card text-white bg-primary mb-3">
-                  <div class="card-header">SpeedRuns waiting verification</div>
-                      <div class="card-body" id="speedrunCardBody">
-                  </div>
-            </div>
-            <div class="col-3 card text-white bg-primary mb-3">
-                  <div class="card-header">Requests</div>
-                  <div class="card-body"></div>
-            </div>
-    </div>
-    
+﻿@model DashboardViewModel
 
-    @section Scripts
-    {
-        <script src="~/js/Moderation.js"></script>
-    }
+@{
+    ViewData["Title"] = "Dashboad";
+}
+    <h3 class="text-center mt-2">@ViewData["Title"]</h3>
+<div class="row mt-5 gap-3">
+    <div class="col card text-white bg-primary mb-3">
+          <div class="card-header">SpeedRuns waiting verification</div>
+              <div class="card-body" id="speedrunCardBody">
+                @foreach (var speedRun in Model.SpeedRuns)
+                {
+                    <div class="container mb-3 row">
+                        <div class="hidden col-md-auto text-center">
+                            <a class="align-self-end" href="/Games/Titanfall 2">
+                                <img class="object-fit-container" alt="image alt" src="@speedRun.GameImageUrl" height="100" width="72" />
+                            </a>
+                        </div >
+                         <div class="col">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">@speedRun.GameTitle</th>
+                                        <th scope="col"></th>
+                                        <th class="text-right" scope="col">@speedRun.SpeedRunnerName</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-secondary">
+                                        <td>@speedRun.Category</td>
+                                        <td>@speedRun.SubmitionDate</td>
+                                        <td>@speedRun.Duration</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                         </div>
+                         <div class="col-3 text-center align-self-center">
+                             <a asp-controller="SpeedRuns" asp-action="Details" asp-route-speedRunId="@speedRun.Id" type="button" class="text-warning-emphasis btn btn-warning">
+                                 Check speedrun
+                             </a>
+                         </div>
+                    </div>
+                 }
+          </div>
+    </div>
+    <div class="col-3 card text-white bg-primary mb-3">
+          <div class="card-header">Support Ticktes</div>
+          <div class="card-body"></div>
+          @foreach (var ticket in Model.SupportTickets)
+         {
+            < class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-body">
+                     <h4 class="card-title">@ticket.Title</h4>
+                     <p class="card-text">@ticket.Content</p>
+                     <span class="text">Ticket by: @ticket.Submitter</span>
+                </div>
+            </div>
+         }
+    </div>
+</div>
