@@ -53,10 +53,17 @@ namespace SpeedRunTracker.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+            app.UseEndpoints(cfg =>
+            {
+                cfg.MapControllerRoute(
+                    name: "SpeedRunDetials",
+                    pattern: "/{controller}/{action}/{speedRunId}",
+                    defaults: new { Controller = "SpeedRuns" , Action = "Details"});
+
+                cfg.MapDefaultControllerRoute();
+
+                cfg.MapRazorPages();
+            });
 
             app.Run();
         }
