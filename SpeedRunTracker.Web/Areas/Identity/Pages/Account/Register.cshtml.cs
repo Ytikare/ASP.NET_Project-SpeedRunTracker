@@ -5,7 +5,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SpeedRunTracker.Common;
+using SpeedRunTracker.Common.Enums;
 using SpeedRunTracker.Data.Entities;
 using SpeedRunTracker.Services.Interfaces;
 using System.ComponentModel.DataAnnotations;

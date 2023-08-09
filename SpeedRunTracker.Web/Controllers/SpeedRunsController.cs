@@ -107,18 +107,28 @@ namespace SpeedRunTracker.Web.Controllers
         [Authorize(Roles = "Moderator, Admin")]
         public async Task<IActionResult> Disqualify(string speedRunId)
         {
-            SpeedRunDisqualifyModel viewModel = new SpeedRunDisqualifyModel()
+            if (await speedRunService.CheckSpeedRunExitsAsync(speedRunId) == false)
             {
-                SpeedRunDetails = await speedRunService.GetSpeedRunDetailsAsync(speedRunId),
-            };
+                return NotFound();
+            }
 
-            return View(viewModel);
+            SpeedRunDisqualifyModel model = new()
+            {
+                SpeedRunDetails = await speedRunService.GetSpeedRunDetailsAsync(speedRunId)
+            };
+            
+            return View(model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Moderator, Admin")]
         public async Task<IActionResult> Disqualify(SpeedRunDisqualifyModel model, string speedRunId)
         {
+            if (await speedRunService.CheckSpeedRunExitsAsync(speedRunId) == false)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid == false)
             {
                 model.SpeedRunDetails = await speedRunService.GetSpeedRunDetailsAsync(speedRunId);

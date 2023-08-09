@@ -1,6 +1,6 @@
 ﻿namespace SpeedRunTracker.Models.Web.ViewModels
 {
-    public class SpeedRunDashboardDetailsViewModel
+    public class SpeedRunCompactDetailsViewModel
     {
         public string Id { get; set; } = null!;
         public string GameTitle { get; set; } = null!;

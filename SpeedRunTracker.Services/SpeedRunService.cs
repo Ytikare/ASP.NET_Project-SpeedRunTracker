@@ -57,13 +57,31 @@ namespace SpeedRunTracker.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<SpeedRunDashboardDetailsViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync()
+        public async Task<IEnumerable<SpeedRunCompactDetailsViewModel>> GetLatestVerifiedSpeedRunsAsync()
         {
-            ICollection<SpeedRunDashboardDetailsViewModel> data = await dbContext.SpeedRuns
+            return await dbContext.SpeedRuns
+                .Where(s => s.IsVerified && s.IsActive)
+                .Take(15)
+                .Select(s => new SpeedRunCompactDetailsViewModel()
+                {
+                    Id = s.Id.ToString(),
+                    Category = s.Category.Name,
+                    GameTitle = s.Game.Title,
+                    Duration = s.SpeedRunTime.ToString("g"),
+                    GameImageUrl = s.Game.ImgUrl,
+                    SubmitionDate = s.SubmitionDate.ToString("dd/MM/yyyy"),
+                    SpeedRunnerName = s.SpeedRuner.UserName
+                })
+                .ToArrayAsync();
+        }
+
+        public async Task<IEnumerable<SpeedRunCompactDetailsViewModel>> GetOldestFiveUnverifiedSpeedRunsAsync()
+        {
+            ICollection<SpeedRunCompactDetailsViewModel> data = await dbContext.SpeedRuns
                 .Where(s => s.IsActive == true && s.IsVerified == false)
                 .OrderByDescending(s => s.SubmitionDate)
                 .Take(5)
-                .Select(s => new SpeedRunDashboardDetailsViewModel()
+                .Select(s => new SpeedRunCompactDetailsViewModel()
                 {
                     Id = s.Id.ToString(),
                     Category = s.Category.Name,

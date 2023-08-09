@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpeedRunTracker.Models.Web.ViewModels;
+using SpeedRunTracker.Services.Interfaces;
 using System.Diagnostics;
 
 namespace SpeedRunTracker.Web.Controllers
@@ -7,15 +8,19 @@ namespace SpeedRunTracker.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ISpeedRunService speedRunService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ISpeedRunService speedRunService)
         {
             _logger = logger;
+            this.speedRunService = speedRunService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await speedRunService.GetLatestVerifiedSpeedRunsAsync();
+
+            return View(model);
         }
 
         public IActionResult Privacy()

@@ -1,7 +1,48 @@
-﻿@{
+﻿@model IEnumerable<SpeedRunCompactDetailsViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-
+    <div class="row mt-5 gap-3">
+        <div class="col card text-white bg-primary mb-3">
+              <div class="card-header">Most recent speed runs</div>
+                  <div class="card-body" id="speedrunCardBody">
+                    @foreach (var speedRun in Model)
+                    {
+                        <div class="container mb-3 row">
+                            <div class="hidden col-md-auto text-center">
+                                <a class="align-self-end" href="/Games/Titanfall 2">
+                                    <img class="object-fit-container" alt="image alt" src="@speedRun.GameImageUrl" height="100" width="72" />
+                                </a>
+                            </div >
+                             <div class="col">
+                                <table class="table table-hover" >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">@speedRun.GameTitle</th>
+                                            <th scope="col"></th>
+                                            <th class="text-right" scope="col">@speedRun.SpeedRunnerName</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-secondary">
+                                            <td>@speedRun.Category</td>
+                                            <td>@speedRun.SubmitionDate</td>
+                                            <td>@speedRun.Duration</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                             </div>
+                             <div class="col-3 text-center align-self-center">
+                                 <a asp-controller="SpeedRuns" asp-action="Details" asp-route-speedRunId="@speedRun.Id" type="button" class="text-warning-emphasis btn btn-warning">
+                                     View speed run details
+                                 </a>
+                             </div>
+                        </div>
+                    }
+              </div>
+        </div>
+    </div>
 </div>

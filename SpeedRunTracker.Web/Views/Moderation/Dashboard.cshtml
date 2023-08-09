@@ -17,7 +17,7 @@
                             </a>
                         </div >
                          <div class="col">
-                            <table class="table">
+                            <table class="table table-hover" >
                                 <thead>
                                     <tr>
                                         <th scope="col">@speedRun.GameTitle</th>
@@ -45,7 +45,7 @@
     </div>
     <div class="col-3 card text-white bg-primary mb-3">
           <div class="card-header">Support Ticktes</div>
-          <div class="card-body"></div>
+          <hr />
           @foreach (var ticket in Model.SupportTickets)
          {
             <div class="card border-secondary mb-3" style="max-width: 20rem;">

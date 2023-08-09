@@ -1,4 +1,4 @@
-﻿namespace SpeedRunTracker.Common
+﻿namespace SpeedRunTracker.Common.Enums
 {
     public enum ApplicationRoles
     {
