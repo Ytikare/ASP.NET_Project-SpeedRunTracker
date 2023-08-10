@@ -60,6 +60,12 @@ namespace SpeedRunTracker.Web
                     pattern: "/{controller}/{action}/{speedRunId}",
                     defaults: new { Controller = "SpeedRuns" , Action = "Details"});
 
+                cfg.MapControllerRoute(
+                    name: "LeaderboardDetails",
+                    pattern: "/{controller}/{action}/{gameId}/{categoryId}",
+                    defaults: new { Controller = "Games", Action = "Leaderboard" }
+                    );
+
                 cfg.MapDefaultControllerRoute();
 
                 cfg.MapRazorPages();

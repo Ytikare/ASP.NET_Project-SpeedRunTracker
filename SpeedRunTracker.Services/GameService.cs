@@ -41,6 +41,7 @@ namespace SpeedRunTracker.Services
                 .Select(g => new GameAllViewModel
                 {
                     Id = g.Id,
+                    FirstCategoryId = g.Categories.OrderBy(gc => gc.CategoryId).Select(gc => gc.CategoryId).First(),
                     ImageUrl = g.ImgUrl,
                     Title = g.Title,
                     SpeedRuns = g.SpeedRuns.Count
@@ -56,6 +57,21 @@ namespace SpeedRunTracker.Services
             };
         }
 
+        public async Task<bool> DoesCategoryExistsAsync(int categoryId)
+        {
+            return await dbContext.Categories.AnyAsync(c => c.Id == categoryId);
+        }
+
+        public async Task<bool> DoesGameContaionsCategoryAsync(int gameId, int categoryId)
+        {
+            return await dbContext.GameCategories.AnyAsync(gc => gc.CategoryId == categoryId && gc.GameId == gameId);
+        }
+
+        public async Task<bool> DoesGameExistsAsync(int gameId)
+        {
+            return await dbContext.Games.AnyAsync(g => g.Id == gameId);
+        }
+
         public async Task<IEnumerable<SpeedRunSelectGameFormModel>> GetAllGameTitlesAsync(string value)
         {
             return await dbContext
@@ -69,6 +85,52 @@ namespace SpeedRunTracker.Services
                     Id = g.Id,
                 })
                 .ToListAsync();
+        }
+
+        public async Task<LeaderboardViewModel> GetLeaderboardDataAsync(int gameId, int categoryId)
+        {
+            LeaderboardViewModel model = await dbContext.Games
+                .Where(g => g.Id == gameId)
+                .Select(g => new LeaderboardViewModel()
+                {
+                    Id = g.Id,
+                    Title = g.Title,
+                    ImageUrl = g.ImgUrl,
+                    CategoryName = g.Categories.Where(gc => gc.CategoryId == categoryId).First().Category.Name,
+                    Genres = g.Genres.Select(gg => gg.Genre.Type).ToList(),
+                    Categories = g.Categories
+                                .Select(gc => new SpeedRunCategoriesLeaderboardViewModel()
+                                {
+                                    Id = gc.CategoryId,
+                                    CategoryName = gc.Category.Name
+                                }).ToArray(),
+                    SpeedRuns = g.SpeedRuns
+                                .Where(s => s.IsVerified)
+                                .Where(s => s.GameId == gameId && s.CategoryId == categoryId)
+                                .OrderBy(s => s.SpeedRunTime)
+                                .Take(50)
+                                .Select(s => new SpeedRunLeaderboardViewModel()
+                                {
+                                    Id = s.Id.ToString(),
+                                    RunDuraiton = s.SpeedRunTime.ToString("g"),
+                                    SpeedRunnerUsername = s.SpeedRuner.UserName,
+                                    SubmitionDate = s.SubmitionDate
+                                })
+                                .ToList(),
+                    //RecentSpeedRuns = g.SpeedRuns.OrderByDescending(s => s.VerificationDate)
+                    //            .Take(10)
+                    //            .Select(s => new SpeedRunLeaderboardViewModel()
+                    //            {
+                    //                Id = s.Id.ToString(),
+                    //                RunDuraiton = s.SpeedRunTime.ToString("g"),
+                    //                SpeedRunnerUsername = s.SpeedRuner.UserName,
+                    //                SubbmitionDate = s.SubmitionDate.ToString("dd/MM/yyyy")
+                    //            })
+                    //            .ToArray(),
+                })
+                .FirstAsync();
+
+            return model;
         }
 
         public async Task<bool> IsGameIdValidAsync(int gameId)

@@ -62,7 +62,7 @@
                     <h4>@game.Title</h4>
                     <h6>Total speed runs: <b>@game.SpeedRuns</b></h6>
                     <br />
-                    <a asp-controller="Games" asp-action="Details" asp-route-gameId="@game.Id" class="btn btn-success">Check leadboards</a>
+                    <a asp-controller="Games" asp-action="Leaderboard" asp-route-gameId="@game.Id" asp-route-categoryId="@game.FirstCategoryId" class="btn btn-success">Check leadboards</a>
                 </div>
             </div>
         </div>

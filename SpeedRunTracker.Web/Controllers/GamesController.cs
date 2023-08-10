@@ -26,7 +26,31 @@ namespace SpeedRunTracker.Web.Controllers
             queryModel.TotalGames = servModel.TotalGames;
 
             return View(queryModel);
-            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Leaderboard(int gameId, int categoryId)
+        {
+            if (await gameService.DoesGameExistsAsync(gameId) == false)
+            {
+                return NotFound();
+            }
+
+            if (await gameService.DoesCategoryExistsAsync(categoryId) == false)
+            {
+                return NotFound();
+            }
+
+            if (await gameService.DoesGameContaionsCategoryAsync(gameId, categoryId) == false)
+            {
+                return NotFound();
+            }
+
+
+            var model = await gameService.GetLeaderboardDataAsync(gameId, categoryId);
+
+            return View(model);
         }
     }
 }
