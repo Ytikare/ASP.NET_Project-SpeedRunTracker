@@ -21,11 +21,13 @@
         public static class CategoryValidations
         {
             public const int MaxNameLenght = 20;
+            public const int MinNameLenght = 5;
         }
 
         public static class GenreValidations
         {
             public const int MaxTypeLenght = 25;
+            public const int MinTypeLenght = 3;
         }
 
         public static class UserValidations

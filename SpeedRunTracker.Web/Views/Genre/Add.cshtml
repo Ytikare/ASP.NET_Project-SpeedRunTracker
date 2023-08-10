@@ -1,0 +1,28 @@
+﻿@model GenreFormModel
+
+@{
+    ViewData["Title"] = "Add genre";
+}
+<h3 class="text-center">@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="GenreType"></label>
+                <input asp-for="GenreType" class="form-control" placeholder="Genre type here">
+                <span asp-validation-for="GenreType" class="small text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Add genre" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+        <partial name="_ValidationScriptsPartial" />
+}

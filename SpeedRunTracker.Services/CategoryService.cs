@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeedRunTracker.Data;
+using SpeedRunTracker.Data.Entities;
 using SpeedRunTracker.Models.Web.FormModels;
 using SpeedRunTracker.Services.Interfaces;
 
@@ -13,6 +14,20 @@ namespace SpeedRunTracker.Services
         {
             this.dbContext = dbContext;
         }
+
+        public async Task CreateCategoryAsync(CategoryFormModel model)
+        {
+            Category c = new Category()
+            {
+                Name = model.CategoryName
+            };
+
+            await dbContext.Categories.AddAsync(c);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesCategoryExistsAsync(string categoryName) => 
+            await dbContext.Categories.AnyAsync(c => c.Name.ToLower().Equals(categoryName.ToLower()));
 
         public async Task<IEnumerable<SpeedRunSelectCategoryFormModel>> GetCategoriesAsync(int gameId)
         {
