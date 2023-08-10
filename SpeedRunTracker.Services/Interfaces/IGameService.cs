@@ -1,6 +1,7 @@
 ﻿using SpeedRunTracker.Models.Web.FormModels;
 using SpeedRunTracker.Models.Web.ViewModels;
 using SpeedRunTracker.Services.Models;
+using System.Reflection.Emit;
 
 namespace SpeedRunTracker.Services.Interfaces
 {
@@ -16,9 +17,9 @@ namespace SpeedRunTracker.Services.Interfaces
         
         public Task<bool> DoesGameExistsAsync(int gameId);
         
-        public Task<bool> DoesCategoryExistsAsync(int categoryId);
-        
         public Task<bool> DoesGameContaionsCategoryAsync(int gameId, int categoryId);
+
+        public Task AddGameAsync(GameFormModel model);
 
     }
 }

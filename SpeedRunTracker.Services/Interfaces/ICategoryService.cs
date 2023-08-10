@@ -10,6 +10,12 @@ namespace SpeedRunTracker.Services.Interfaces
 
         public Task CreateCategoryAsync(CategoryFormModel model);
 
-        public Task<bool> DoesCategoryExistsAsync(string categoryName);
+        public Task<bool> DoesCategoryExistsByNameAsync(string categoryName);
+        
+        public Task<bool> DoesCategoryExistsByIdAsync(int categoryId);
+
+        public Task<IEnumerable<string>> GetAllCategoryNamesAsync();
+
+        public Task<bool> CheckIfArrayContainsInvalidCategoriesAsync(IEnumerable<string> data);
     }
 }

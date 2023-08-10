@@ -26,7 +26,7 @@ namespace SpeedRunTracker.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(CategoryFormModel model)
         {
-            if (await categoryService.DoesCategoryExistsAsync(model.CategoryName))
+            if (await categoryService.DoesCategoryExistsByNameAsync(model.CategoryName))
             {
                 ModelState.AddModelError(nameof(model.CategoryName), "Category already exists.");
             }

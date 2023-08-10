@@ -1,0 +1,61 @@
+﻿@model GameFormModel
+
+@{
+    ViewData["Title"] = "Add a game";
+}
+<h3 class="text-center">@ViewData["Title"]</h3>
+
+ <div class="row">
+            <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="GameTitle"></label>
+                        <input asp-for="GameTitle" class="form-control" placeholder="">
+                        <span asp-validation-for="GameTitle" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImgUrl"></label>
+                        <input asp-for="ImgUrl" class="form-control" placeholder="">
+                        <span asp-validation-for="ImgUrl" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-1">List of available categories</label>
+                        <select class="form-control">
+                            @foreach (var cat in Model.CategoryNames)
+                            {
+                                <option>@cat</option>
+                            }
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="UnmodifiedCategoryString"></label>
+                        <textarea asp-for="UnmodifiedCategoryString" class="form-control" placeholder="Categories must be existing and seperated by commas (use the list above to see what categories are available)"></textarea>
+                        <span asp-validation-for="UnmodifiedCategoryString" class="small text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="mb-1">List of available genres</label>
+                        <select class="form-control">
+                            @foreach (var g in Model.GenreTypes)
+                            {
+                                <option>@g</option>
+                            }
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="UnmodifiedGenreString"></label>
+                        <textarea asp-for="UnmodifiedGenreString" class="form-control" placeholder="Genres must be existing and seperated by commas (use the list above to see what categories are available)"></textarea>
+                        <span asp-validation-for="UnmodifiedGenreString" class="small text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <input class="btn btn-primary mt-3" type="submit" value="Save" />
+                    </div>
+                </form>
+            </div>
+    </div>
+@section Scripts
+    {
+        <partial name="_ValidationScriptsPartial" />
+}

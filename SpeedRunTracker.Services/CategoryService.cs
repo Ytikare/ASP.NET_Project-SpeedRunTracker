@@ -15,6 +15,18 @@ namespace SpeedRunTracker.Services
             this.dbContext = dbContext;
         }
 
+        public async Task<bool> CheckIfArrayContainsInvalidCategoriesAsync(IEnumerable<string> data)
+        {
+            foreach (var str in data)
+            {
+                if (await dbContext.Categories.AnyAsync(c => c.Name.ToLower().Equals(str.Trim().ToLower())) == false)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public async Task CreateCategoryAsync(CategoryFormModel model)
         {
             Category c = new Category()
@@ -26,8 +38,14 @@ namespace SpeedRunTracker.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> DoesCategoryExistsAsync(string categoryName) => 
+        public async Task<bool> DoesCategoryExistsByIdAsync(int categoryId) => 
+            await dbContext.Categories.AnyAsync(c => c.Id == categoryId);
+
+        public async Task<bool> DoesCategoryExistsByNameAsync(string categoryName) => 
             await dbContext.Categories.AnyAsync(c => c.Name.ToLower().Equals(categoryName.ToLower()));
+
+        public async Task<IEnumerable<string>> GetAllCategoryNamesAsync() => 
+            await dbContext.Categories.Select(c => c.Name).ToArrayAsync();
 
         public async Task<IEnumerable<SpeedRunSelectCategoryFormModel>> GetCategoriesAsync(int gameId)
         {

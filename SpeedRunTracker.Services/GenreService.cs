@@ -26,7 +26,21 @@ namespace SpeedRunTracker.Services
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task<bool> CheckIfArrayContainsInvalidGenresAsync(IEnumerable<string> data)
+        {
+            foreach (var str in data)
+            {
+                if (await dbContext.Genres.AnyAsync(c => c.Type.ToLower().Equals(str.Trim().ToLower())) == false)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public async Task<bool> DoesGenreExistsAsync(string genreType) =>
             await dbContext.Genres.AnyAsync(g => g.Type.ToLower().Equals(genreType.ToLower()));
+
+        public async Task<IEnumerable<string>> GetAllGenreTypesAsync() => await dbContext.Genres.Select(g => g.Type).ToArrayAsync();
     }
 }

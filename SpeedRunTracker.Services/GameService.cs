@@ -17,6 +17,72 @@ namespace SpeedRunTracker.Services
             this.dbContext = dbContext;
         }
 
+        public async Task AddGameAsync(GameFormModel model)
+        {
+            //fumo 
+            Game g = new Game() 
+            {
+                Title = model.GameTitle,
+                ImgUrl = model.ImgUrl,
+            };
+
+            await dbContext.Games.AddAsync(g);
+            await dbContext.SaveChangesAsync();
+
+            g = await dbContext.Games.Where(g => g.Title.ToLower().Equals(model.GameTitle.ToLower())).FirstAsync();
+
+            IEnumerable<string> genresTypes = model.UnmodifiedGenreString
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(temp => temp.Trim())
+                .ToList();
+
+            IEnumerable<string> categoriesNames = model.UnmodifiedCategoryString
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(temp => temp.Trim())
+                .ToList();
+
+
+            IEnumerable<int> genresIds = await dbContext
+                .Genres
+                .Where(g => genresTypes.Select(gt => gt.ToLower()).Contains(g.Type.ToLower())).Select(g => g.Id)
+                .ToListAsync();
+            
+            IEnumerable<int> categoriesIds = await dbContext
+                .Categories
+                .Where(c => categoriesNames.Select(cn => cn.ToLower()).Contains(c.Name.ToLower())).Select(c => c.Id)
+                .ToListAsync();
+
+
+            ICollection<GameGenres> gameGenres = new HashSet<GameGenres>();
+            foreach (var genreId in genresIds)
+            {
+                GameGenres temp = new GameGenres()
+                {
+                    GameId = g.Id,
+                    GenreId = genreId
+                };
+
+                gameGenres.Add(temp);
+            }
+
+            ICollection<GameCategories> gameCategories = new HashSet<GameCategories>();
+            foreach (var categoriesId in categoriesIds)
+            {
+                GameCategories temp = new GameCategories()
+                {
+                    GameId = g.Id,
+                    CategoryId = categoriesId
+                };
+
+                gameCategories.Add(temp);
+            }
+
+            await dbContext.GameCategories.AddRangeAsync(gameCategories);
+            await dbContext.GameGenres.AddRangeAsync(gameGenres);
+
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task<AllGamesSortedServiceModel> AllGamesAsync(BrowseGamesQueryModel queryModel)
         {
             IQueryable<Game> gameQuery = dbContext.Games.AsQueryable();
@@ -55,11 +121,6 @@ namespace SpeedRunTracker.Services
                 Games = data,
                 TotalGames = gameCount
             };
-        }
-
-        public async Task<bool> DoesCategoryExistsAsync(int categoryId)
-        {
-            return await dbContext.Categories.AnyAsync(c => c.Id == categoryId);
         }
 
         public async Task<bool> DoesGameContaionsCategoryAsync(int gameId, int categoryId)
@@ -117,16 +178,6 @@ namespace SpeedRunTracker.Services
                                     SubmitionDate = s.SubmitionDate
                                 })
                                 .ToList(),
-                    //RecentSpeedRuns = g.SpeedRuns.OrderByDescending(s => s.VerificationDate)
-                    //            .Take(10)
-                    //            .Select(s => new SpeedRunLeaderboardViewModel()
-                    //            {
-                    //                Id = s.Id.ToString(),
-                    //                RunDuraiton = s.SpeedRunTime.ToString("g"),
-                    //                SpeedRunnerUsername = s.SpeedRuner.UserName,
-                    //                SubbmitionDate = s.SubmitionDate.ToString("dd/MM/yyyy")
-                    //            })
-                    //            .ToArray(),
                 })
                 .FirstAsync();
 
