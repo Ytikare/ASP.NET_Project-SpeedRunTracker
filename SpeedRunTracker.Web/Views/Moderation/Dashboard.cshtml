@@ -12,24 +12,22 @@
                 {
                     <div class="container mb-3 row">
                         <div class="hidden col-md-auto text-center">
-                            <a class="align-self-end" href="/Games/Titanfall 2">
-                                <img class="object-fit-container" alt="image alt" src="@speedRun.GameImageUrl" height="100" width="72" />
-                            </a>
+                            <img class="object-fit-container" alt="image alt" src="@speedRun.GameImageUrl" height="100" width="72" />
                         </div >
                          <div class="col">
                             <table class="table table-hover" >
                                 <thead>
                                     <tr>
-                                        <th scope="col">@speedRun.GameTitle</th>
-                                        <th scope="col"></th>
-                                        <th class="text-right" scope="col">@speedRun.SpeedRunnerName</th>
+                                        <th class="px-2" scope="col">@speedRun.GameTitle</th>
+                                        <th class="px-0" scope="col"></th>
+                                        <th class="px-1" scope="col">@speedRun.SpeedRunnerName</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="table-secondary">
-                                        <td>@speedRun.Category</td>
-                                        <td>@speedRun.SubmitionDate</td>
-                                        <td>@speedRun.Duration</td>
+                                        <td class="px-2" >@speedRun.Category</td>
+                                        <td class="px-0" >@speedRun.SubmitionDate</td>
+                                        <td class="px-1" >@speedRun.Duration</td>
                                     </tr>
                                 </tbody>
                             </table>

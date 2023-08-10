@@ -1,0 +1,61 @@
+﻿@page
+@model SpeedRunTracker.Web.Areas.Identity.Pages.Account.Manage.MySpeedRunsModel
+@{
+    ViewData["Title"] = "My speed runs";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    bool speedRunsExists = Model.MySpeedRuns.Any();
+}
+
+<h3>@ViewData["Title"]</h3>
+@if (speedRunsExists)
+{
+<div class="col card text-white bg-primary mb-3">
+    <div class="card-body" id="speedrunCardBody">
+        @foreach (var s in Model.MySpeedRuns)
+        {
+            <div class="container mb-3 row bg-primary">
+                <div class="hidden col-md-auto text-center">
+                    <img class="object-fit-container" alt="image alt" src="@s.GameImageUrl" height="100" width="72" />
+                </div >
+                 <div class="col">
+                    <table class="table table-hover" >
+                        <thead>
+                            <tr>
+                                <th class="px-2" scope="col">@s.GameTitle</th>
+                                <th class="px-0" scope="col"></th>
+                                <th class="px-1" scope="col">@s.SpeedRunnerName</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-secondary">
+                                <td class="px-2" >@s.Category</td>
+                                <td class="px-0" >@s.SubmitionDate</td>
+                                <td class="px-1" >@s.Duration</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+                 <div class="col-3 text-center align-self-center">
+                     <a asp-controller="SpeedRuns" asp-action="Details" asp-route-speedRunId="@s.Id" type="button" class="text-warning-emphasis btn btn-warning">
+                         Check speedrun
+                     </a>
+                 </div>
+                 <div class="col-2">
+                     Verification: @if (s.IsVerified == true)
+                        {
+                            <span>Verified</span>
+                        }
+                        else if (s.IsActive == true)
+                        {
+                            <span>Pending</span>
+                        }
+                        else
+                        {
+                            <span>Disqualified</span>
+                        }
+                 </div>
+            </div>
+        }
+    </div>
+</div>
+}

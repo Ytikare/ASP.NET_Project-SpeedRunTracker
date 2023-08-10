@@ -19,7 +19,6 @@ namespace SpeedRunTracker.Services.Interfaces
         
         public Task DisqualifySpeedRunAsync(SpeedRunDisqualifyModel model, string speedRunId);
 
-
-
+        public Task<IEnumerable<MySpeedRunViewModel>> GetMySpeedRunsAsync(string userId);
     }
 }
