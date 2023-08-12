@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Web.Infrastructure", "SpeedRunTracker.Web.Infrastructure\SpeedRunTracker.Web.Infrastructure.csproj", "{27E18980-4D67-4517-97DB-7B86B4D421C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Web.Api", "SpeedRunTracker.Web.Api\SpeedRunTracker.Web.Api.csproj", "{E0C5F813-B4E6-46A3-BA44-D18603775BD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRunTracker.Web.Api", "SpeedRunTracker.Web.Api\SpeedRunTracker.Web.Api.csproj", "{E0C5F813-B4E6-46A3-BA44-D18603775BD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRunTracker.Services.UnitTests", "SpeedRunTracker.Services.UnitTests\SpeedRunTracker.Services.UnitTests.csproj", "{5CCE3EAE-2B59-406F-B9F1-6F2FE063ED85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0C5F813-B4E6-46A3-BA44-D18603775BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CCE3EAE-2B59-406F-B9F1-6F2FE063ED85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CCE3EAE-2B59-406F-B9F1-6F2FE063ED85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CCE3EAE-2B59-406F-B9F1-6F2FE063ED85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CCE3EAE-2B59-406F-B9F1-6F2FE063ED85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

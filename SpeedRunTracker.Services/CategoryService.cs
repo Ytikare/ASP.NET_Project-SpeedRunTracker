@@ -38,9 +38,6 @@ namespace SpeedRunTracker.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> DoesCategoryExistsByIdAsync(int categoryId) => 
-            await dbContext.Categories.AnyAsync(c => c.Id == categoryId);
-
         public async Task<bool> DoesCategoryExistsByNameAsync(string categoryName) => 
             await dbContext.Categories.AnyAsync(c => c.Name.ToLower().Equals(categoryName.ToLower()));
 

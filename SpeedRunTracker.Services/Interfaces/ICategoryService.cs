@@ -12,8 +12,6 @@ namespace SpeedRunTracker.Services.Interfaces
 
         public Task<bool> DoesCategoryExistsByNameAsync(string categoryName);
         
-        public Task<bool> DoesCategoryExistsByIdAsync(int categoryId);
-
         public Task<IEnumerable<string>> GetAllCategoryNamesAsync();
 
         public Task<bool> CheckIfArrayContainsInvalidCategoriesAsync(IEnumerable<string> data);

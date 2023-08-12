@@ -44,7 +44,7 @@ namespace SpeedRunTracker.Web.Controllers
                 return NotFound();
             }
 
-            if (await categoryService.DoesCategoryExistsByIdAsync(categoryId) == false)
+            if (await categoryService.IsCategoryIdValid(categoryId) == false)
             {
                 return NotFound();
             }
