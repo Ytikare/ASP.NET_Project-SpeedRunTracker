@@ -1,0 +1,32 @@
+﻿@model ModeratorFormModel
+
+@{
+    ViewData["Title"] = "Add mod";
+}
+<h3 class="text-center">@ViewData["Title"]</h3>
+<div class="row">
+            <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Id"></label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="usernameInput" class="form-control" placeholder="Enter text here..."/>
+                            <button class="btn btn-primary" type="button" id="loadUsers">Search for users</button>
+                        </div>
+                        <select asp-for="Id" id="userNameSuggetions" class="form-control"></select>
+                        <span asp-validation-for="Id" class="small text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <input class="btn btn-primary mt-3" type="submit" value="Add user as a mod" />
+                    </div>
+                </form>
+            </div>
+    </div>
+@section Scripts
+    {
+        <script src="~/js/AddMod.js"></script>
+        <partial name="_ValidationScriptsPartial" />
+}

@@ -7,7 +7,7 @@ using SpeedRunTracker.Services.Models;
 
 namespace SpeedRunTracker.Web.Controllers
 {
-    [Authorize(Roles = $"Moderation, Admin")]
+    [Authorize(Roles = "Moderator, Admin")]
     public class GamesController : Controller
     {
         private readonly IGameService gameService;

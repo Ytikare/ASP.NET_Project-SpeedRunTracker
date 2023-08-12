@@ -110,7 +110,7 @@ namespace SpeedRunTracker.Services
                     FirstCategoryId = g.Categories.OrderBy(gc => gc.CategoryId).Select(gc => gc.CategoryId).First(),
                     ImageUrl = g.ImgUrl,
                     Title = g.Title,
-                    SpeedRuns = g.SpeedRuns.Count
+                    SpeedRuns = g.SpeedRuns.Where(s => s.IsVerified).Count()
                 })
                 .ToListAsync();
 

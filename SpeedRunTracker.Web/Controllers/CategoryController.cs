@@ -39,7 +39,7 @@ namespace SpeedRunTracker.Web.Controllers
             try
             {
                 await categoryService.CreateCategoryAsync(model);
-                return RedirectToAction("Dashboard", "Modetaion");
+                return RedirectToAction("Browse", "Games");
             }
             catch (Exception)
             {

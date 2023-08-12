@@ -10,7 +10,7 @@
 
     <partial name="_SpeedRunDetailsPartial" model="@Model"/>
 
-    @if (User.IsInRole(ApplicationRoles.Moderaton.ToString()) || User.IsInRole(ApplicationRoles.Admin.ToString()))
+    @if (User.IsInRole(ApplicationRoles.Moderator.ToString()) || User.IsInRole(ApplicationRoles.Admin.ToString()))
     {
             <div class="d-flex justify-content-center gap-3">
             @if (Model.IsVerified == false && Model.IsActive)

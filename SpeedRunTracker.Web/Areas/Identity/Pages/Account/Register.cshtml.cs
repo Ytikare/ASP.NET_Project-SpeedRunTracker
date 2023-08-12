@@ -96,10 +96,10 @@ namespace SpeedRunTracker.Web.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
 
-            if (await userService.CheckIfUsernameExits(Input.Username))
+            if (await userService.CheckIfUsernameExitsAsync(Input.Username))
                 ModelState.AddModelError(string.Empty, "Account with specified username already exists. Please choose another username.");
 
-            if (await userService.CheckIfEmailExits(Input.Email))
+            if (await userService.CheckIfEmailExitsAsync(Input.Email))
                 ModelState.AddModelError(string.Empty, "Account with specified email already exists. Please choose another email.");
 
             if (ModelState.IsValid)
