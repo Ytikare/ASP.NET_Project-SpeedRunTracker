@@ -27,4 +27,8 @@
     <ProjectReference Include="..\SpeedRunTracker.Web.Infrastructure\SpeedRunTracker.Web.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

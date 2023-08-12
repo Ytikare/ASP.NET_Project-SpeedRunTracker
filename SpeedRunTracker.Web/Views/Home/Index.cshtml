@@ -9,6 +9,10 @@
         <div class="col card text-white bg-primary mb-3">
               <div class="card-header">Most recent speed runs</div>
                   <div class="card-body" id="speedrunCardBody">
+                    @if (Model.Any() == false)
+                {
+                    <p class="text-center"><b>No speedruns submitted yet.</b></p>
+                }
                     @foreach (var speedRun in Model)
                     {
                         <div class="container mb-3 row">

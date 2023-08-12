@@ -142,7 +142,7 @@ namespace SpeedRunTracker.Web.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Something went wrong. Please try again later.");
+                return StatusCode(500);
             }
         }
     }
