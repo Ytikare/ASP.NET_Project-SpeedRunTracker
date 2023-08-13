@@ -55,7 +55,7 @@ namespace SpeedRunTracker.Web.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddMod(ModeratorFormModel model)
         {
-            if (await userService.CheckIfUserIdExitsasync(model.Id) == false)
+            if (await userService.CheckIfUserIdExitsAsync(model.Id) == false)
             {
                 ModelState.AddModelError(nameof(model.Id), "User does not exists.");
             }
@@ -88,7 +88,7 @@ namespace SpeedRunTracker.Web.Controllers
         [Authorize( Roles = "Admin")]
         public async Task<IActionResult> RemoveMod(string modUserId)
         {
-            if (await userService.CheckIfUserIdExitsasync(modUserId) == false)
+            if (await userService.CheckIfUserIdExitsAsync(modUserId) == false)
             {
                 return NotFound();
             }

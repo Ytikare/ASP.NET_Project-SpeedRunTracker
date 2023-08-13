@@ -10,6 +10,8 @@ namespace SpeedRunTracker.Web.Areas.Identity.Pages.Account.Manage
     [Authorize]
     public class MySpeedRunsModel : PageModel
     {
+        public static string PersonalData => "mySpeedRuns";
+
         private readonly ISpeedRunService speedRunService;
 
         public IEnumerable<MySpeedRunViewModel> MySpeedRuns { get; set; } = null!;

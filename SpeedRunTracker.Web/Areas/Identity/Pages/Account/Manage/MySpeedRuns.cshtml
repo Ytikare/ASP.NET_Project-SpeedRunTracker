@@ -2,11 +2,10 @@
 @model SpeedRunTracker.Web.Areas.Identity.Pages.Account.Manage.MySpeedRunsModel
 @{
     ViewData["Title"] = "My speed runs";
-    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    ViewData["ActivePage"] = MySpeedRunsModel.PersonalData;
     bool speedRunsExists = Model.MySpeedRuns.Any();
 }
 
-<h3>@ViewData["Title"]</h3>
 @if (speedRunsExists)
 {
 <div class="col card text-white bg-primary mb-3">

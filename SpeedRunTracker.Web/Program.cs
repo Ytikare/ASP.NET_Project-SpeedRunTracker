@@ -18,11 +18,13 @@ namespace SpeedRunTracker.Web
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            
+
             builder.Services.AddDefaultIdentity<AppUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false; 
+                options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredLength = 6;
             })
@@ -38,15 +40,10 @@ namespace SpeedRunTracker.Web
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
-
-                app.UseHsts();
             }
+            app.UseHsts();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -61,7 +58,7 @@ namespace SpeedRunTracker.Web
                 cfg.MapControllerRoute(
                     name: "SpeedRunDetials",
                     pattern: "/{controller}/{action}/{speedRunId}",
-                    defaults: new { Controller = "SpeedRuns" , Action = "Details"});
+                    defaults: new { Controller = "SpeedRuns", Action = "Details" });
 
                 cfg.MapControllerRoute(
                     name: "LeaderboardDetails",
