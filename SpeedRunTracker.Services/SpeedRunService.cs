@@ -18,7 +18,6 @@ namespace SpeedRunTracker.Services
 
         public async Task AddSpeedRunAsync(SpeedRunFormModel model, string speedRunerId)
         {
-            //TODO: Implement idiot proofing
             bool check = TimeSpan.TryParse(model.SpeedRunTime, out TimeSpan time);
 
             if (check == false)

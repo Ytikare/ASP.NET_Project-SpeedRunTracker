@@ -7,7 +7,7 @@ namespace SpeedRunTracker.Services.Interfaces
     {
         public Task<bool> CheckIfUsernameExitsAsync(string username);
 
-        public Task<bool> CheckIfUserIdExitsasync(string id);
+        public Task<bool> CheckIfUserIdExitsAsync(string id);
 
         public Task<bool> CheckIfEmailExitsAsync(string email);
 

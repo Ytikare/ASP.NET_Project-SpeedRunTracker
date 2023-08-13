@@ -23,7 +23,7 @@ namespace SpeedRunTracker.Services
             return await dbContext.Users.AnyAsync(u => u.Email.Equals(email));
         }
 
-        public async Task<bool> CheckIfUserIdExitsasync(string id)
+        public async Task<bool> CheckIfUserIdExitsAsync(string id)
         {
             return await dbContext.Users.AnyAsync(s => s.Id.ToString().ToLower().Equals(id.ToLower()));
         }
@@ -64,9 +64,9 @@ namespace SpeedRunTracker.Services
 
         public async Task<bool> IsUserAModAsync(string modUserId)
         {
-            AppUser u = await dbContext.Users.AsNoTracking().Where(u => u.Id.ToString().Equals(modUserId)).FirstAsync();
-            
-            string roleId = await dbContext.Roles.AsNoTracking().Where(r => r.Name.Equals(ApplicationRoles.Moderator.ToString())).Select(r => r.Id.ToString()).FirstAsync();
+            AppUser u = await dbContext.Users.Where(u => u.Id.ToString().ToLower().Equals(modUserId.ToLower())).FirstAsync();
+
+            string roleId = await dbContext.Roles.Where(r => r.Name.Equals(ApplicationRoles.Moderator.ToString())).Select(r => r.Id.ToString().ToLower()).FirstAsync();
 
             return await dbContext.UserRoles.AnyAsync(ur => ur.RoleId.ToString().ToLower() == roleId.ToLower() && ur.UserId.ToString().ToLower() == modUserId.ToLower());
         }
@@ -77,7 +77,7 @@ namespace SpeedRunTracker.Services
             var modRoleId = await dbContext.Roles.Where(r => r.Name == ApplicationRoles.Moderator.ToString()).Select(r => r.Id).FirstAsync();
 
             var ur = await dbContext.UserRoles
-                .Where(ur => ur.RoleId.ToString() == userRoleId.ToString() && ur.UserId.ToString().ToLower() == userId).FirstAsync();
+                .Where(ur => ur.RoleId.ToString().ToLower() == userRoleId.ToString().ToLower() && ur.UserId.ToString().ToLower() == userId.ToLower()).FirstAsync();
 
             dbContext.UserRoles.Remove(ur);
 
