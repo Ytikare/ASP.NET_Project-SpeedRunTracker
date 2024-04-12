@@ -56,15 +56,14 @@ namespace SpeedRunTracker.Web.Controllers
 
             try
             {
-                await speedRunService.AddSpeedRunAsync(model, User.GetId()!);
+                string speedrunId = await speedRunService.AddSpeedRunAsync(model, User.GetId()!);
+                return RedirectToAction("Details", "SpeedRuns", new { speedrunId });
             }
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Unpexpected error occured. Please try again later or contact support.");
                 return View(model);
             }
-
-            return Ok();
         }
 
         [HttpGet]

@@ -16,7 +16,7 @@ namespace SpeedRunTracker.Services
             this.dbContext = dbContext;
         }
 
-        public async Task AddSpeedRunAsync(SpeedRunFormModel model, string speedRunerId)
+        public async Task<string> AddSpeedRunAsync(SpeedRunFormModel model, string speedRunerId)
         {
             bool check = TimeSpan.TryParse(model.SpeedRunTime, out TimeSpan time);
 
@@ -36,6 +36,8 @@ namespace SpeedRunTracker.Services
 
             await dbContext.SpeedRuns.AddAsync(sr);
             await dbContext.SaveChangesAsync();
+
+            return sr.Id.ToString();
         }
 
         public async Task<bool> CheckSpeedRunExitsAsync(string speedRunId)
