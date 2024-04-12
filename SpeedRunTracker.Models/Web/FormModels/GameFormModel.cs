@@ -13,7 +13,7 @@ namespace SpeedRunTracker.Models.Web.FormModels
         [Required]
         [MaxLength(ImgUrlMaxLength)]
         [Url]
-        [Display(Name = "Game title")]
+        [Display(Name = "Game image link")]
         public string ImgUrl { get; set; } = null!;
 
         [Required]
